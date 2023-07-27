@@ -35,8 +35,7 @@ impl Lexer {
     }
 
     pub fn advance(&mut self) -> Option<char> {
-        if self.position < self.input.len() {
-            let ch = self.input.chars().nth(self.position)?;
+        if let Some(ch) = self.input.chars().nth(self.position) {
             self.position += 1;
             Some(ch)
         } else {
@@ -48,26 +47,26 @@ impl Lexer {
         self.input.chars().nth(self.position)
     }
 
-    pub fn is_whitespace(&self, ch: char) -> bool {
+    fn is_whitespace(ch: char) -> bool {
         ch.is_whitespace() || ch == '\n'
     }
 
-    fn is_digit(&self, ch: char) -> bool {
+    fn is_digit(ch: char) -> bool {
         ch.is_digit(10)
     }
 
-    fn is_identifier_start(&self, ch: char) -> bool {
-        ch.is_alphabetic() || ch == '_'
-    }
+    // fn is_identifier_start(ch: char) -> bool {
+    //     ch.is_alphabetic() || ch == '_'
+    // }
 
-    fn is_identifier_continue(&self, ch: char) -> bool {
+    fn is_identifier_continue(ch: char) -> bool {
         ch.is_alphanumeric() || ch == '_'
     }
 
     fn read_identifier(&mut self, start: char) -> String {
         let mut ident = start.to_string();
         while let Some(ch) = self.peek() {
-            if self.is_identifier_continue(ch) {
+            if Self::is_identifier_continue(ch) {
                 ident.push(ch);
                 self.advance();
             } else {
@@ -80,7 +79,7 @@ impl Lexer {
     fn read_number(&mut self, start: char) -> f64 {
         let mut number = start.to_string();
         while let Some(ch) = self.peek() {
-            if self.is_digit(ch) || ch == '.' {
+            if Self::is_digit(ch) || ch == '.' {
                 number.push(ch);
                 self.advance();
             } else {
@@ -92,7 +91,7 @@ impl Lexer {
 
     pub fn next_token(&mut self) -> Token {
         while let Some(ch) = self.advance() {
-            if self.is_whitespace(ch) {
+            if Self::is_whitespace(ch) {
                 continue;
             }
 
@@ -110,7 +109,7 @@ impl Lexer {
                 '0'..='9' => return Token::Number(self.read_number(ch)),
                 'a'..='z' | 'A'..='Z' | '_' => return self.read_identifier(ch).into(),
                 _ => {
-                    // Invalid character, ignore or report an error
+                    //Invalid character
                 }
             }
         }
