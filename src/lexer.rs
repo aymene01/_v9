@@ -34,7 +34,7 @@ impl Lexer {
         Self { input, position: 0 }
     }
 
-    pub fn advance(&mut self) -> Option<char> {
+    fn advance(&mut self) -> Option<char> {
         if let Some(ch) = self.input.chars().nth(self.position) {
             self.position += 1;
             Some(ch)
@@ -43,7 +43,7 @@ impl Lexer {
         }
     }
 
-    pub fn peek(&self) -> Option<char> {
+    fn peek(&self) -> Option<char> {
         self.input.chars().nth(self.position)
     }
 
