@@ -1,3 +1,5 @@
+// take js and transform it into stream tokens
+
 #[derive(Debug, PartialEq)]
 pub enum Token {
     // Keywords
@@ -55,9 +57,9 @@ impl Lexer {
         ch.is_digit(10)
     }
 
-    // fn is_identifier_start(ch: char) -> bool {
-    //     ch.is_alphabetic() || ch == '_'
-    // }
+    fn is_identifier_start(ch: char) -> bool {
+        ch.is_alphabetic() || ch == '_'
+    }
 
     fn is_identifier_continue(ch: char) -> bool {
         ch.is_alphanumeric() || ch == '_'
