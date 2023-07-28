@@ -1,5 +1,10 @@
 // take js and transform it into stream tokens
 
+const FUNCTION_KEYWORD: &str = "function";
+const LET_KEYWORD: &str = "let";
+const IF_KEYWORD: &str = "if";
+const ELSE_KEYWORD: &str = "else";
+
 #[derive(Debug, PartialEq)]
 pub enum Token {
     // Keywords
@@ -123,10 +128,10 @@ impl Lexer {
 impl From<String> for Token {
     fn from(identifier: String) -> Self {
         match identifier.as_str() {
-            "function" => Token::Function,
-            "let" => Token::Let,
-            "if" => Token::If,
-            "else" => Token::Else,
+            FUNCTION_KEYWORD => Token::Function,
+            LET_KEYWORD => Token::Let,
+            IF_KEYWORD => Token::If,
+            ELSE_KEYWORD => Token::Else,
             _ => Token::Identifier(identifier),
         }
     }
