@@ -4,6 +4,10 @@ const FUNCTION_KEYWORD: &str = "function";
 const LET_KEYWORD: &str = "let";
 const IF_KEYWORD: &str = "if";
 const ELSE_KEYWORD: &str = "else";
+const CONST_KEYWORD: &str = "const";
+const VAR_KEYWORD: &str = "var";
+const FOR_KEYWORD: &str = "for";
+const WHILE_KEYWORD: &str = "while";
 
 #[derive(Debug, PartialEq)]
 pub enum Token {
@@ -12,6 +16,10 @@ pub enum Token {
     Let,
     If,
     Else,
+    Const,
+    Var,
+    For,
+    While,
     // Operators
     Plus,
     Minus,
@@ -132,6 +140,10 @@ impl From<String> for Token {
             LET_KEYWORD => Token::Let,
             IF_KEYWORD => Token::If,
             ELSE_KEYWORD => Token::Else,
+            VAR_KEYWORD => Token::Var,
+            FOR_KEYWORD => Token::For,
+            WHILE_KEYWORD => Token::While,
+            CONST_KEYWORD => Token::Const,
             _ => Token::Identifier(identifier),
         }
     }
