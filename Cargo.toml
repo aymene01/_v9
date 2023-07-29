@@ -4,11 +4,3 @@ members = [
     "crates/v9_cli"
 ]
 
-[package]
-name = "v9"
-version = "0.1.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
