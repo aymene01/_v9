@@ -1,11 +1,5 @@
-[workspace]
-members = [
-    "crates/v9_parser",
-    "crates/v9_cli"
-]
-
 [package]
-name = "v9"
+name = "v9_parser"
 version = "0.1.0"
 edition = "2021"
 
