@@ -1,3 +1,7 @@
+mod token;
+
+use token::{Token, TokenKind};
+
 pub fn add(left: usize, right: usize) -> usize {
     left + right
 }
